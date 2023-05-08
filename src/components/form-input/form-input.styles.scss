@@ -1,0 +1,42 @@
+$main-color: black;
+$sub-color: gray;
+
+@mixin shrinkLable {
+    top: -25px;
+    color: $sub-color;
+}
+
+.group {
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.form-input-label {
+    font-size: 1.1rem;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.form-input {
+    width: 100%;
+    height: 2rem;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    border-radius: 3px;
+    padding: 1rem;
+    transition: all 0.2s;
+
+    &:focus {
+       outline: none;
+    }
+
+    &:focus ~ .form-input-label {
+      @include shrinkLable();
+    }
+}
+
+.shrink {
+    @include shrinkLable();
+  }
+
