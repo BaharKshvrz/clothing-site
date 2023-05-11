@@ -1,0 +1,28 @@
+.checkout-container {
+    width: 70%;
+    margin: 0 auto;
+
+    .checkout-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #000;
+        padding: 1rem;
+
+        .header-block {
+            text-transform: capitalize;
+            width: 23%;
+
+            span {
+                font-weight: bold;
+            }
+        }
+    }
+
+    .total {
+        padding: 2rem 0;
+        font-size: 2rem;
+        display: flex;
+        justify-content: flex-end;
+    }
+}
