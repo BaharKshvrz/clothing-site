@@ -1,37 +1,33 @@
 import React, { Fragment, useContext } from 'react'
-import { Link, Outlet } from 'react-router-dom';
-import { ReactComponent as CrwnLogo } from '../../assets/huawei-logo.svg';
-import './navigation.styles.scss';
+import { Outlet } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import { signOutUser } from '../../utils/firebase/firebase.utils';
-import ShopIcon from '../../components/shop-icon/shop-icon.component';
+import CartIcon from '../../components/cart-icon/cart-icon.component';
 import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
 import { CartContext } from '../../contexts/cart.context';
+import { Logo, LogoContainer, NavLink, NavLinks, NavigationContainer } from './navigation.styles';
 
 const Navigation = () => {
   const {currentUser} = useContext(UserContext);
   const {isCartOpen} = useContext(CartContext);
-
-  const signOutHandler = async () => {
-    await signOutUser();
-  }
+  const signOutHandler = async () =>  await signOutUser();
 
   return (
     <Fragment>
-      <div className='navigation'>
-         <Link className="logo-container" to="/">
-            <CrwnLogo className='logo'/>
-         </Link>
-         <div className="nav-links-container">
-           <Link className='nav-link' to="/shop"> Shop </Link>
+      <NavigationContainer>
+         <LogoContainer to="/">
+            <Logo/>
+         </LogoContainer>
+         <NavLinks>
+           <NavLink to="/shop"> Shop </NavLink>
            {
-            currentUser ? (<span className='nav-link' onClick={signOutHandler}>Sing Out</span>)
-                        : (<Link className='nav-link' to="/auth">Sign In</Link>)
+            currentUser ? (<NavLink as='span' onClick={signOutHandler}> Sing Out </NavLink>)
+                        : (<NavLink to="/auth"> Sign In </NavLink>)
            }
-          <ShopIcon/>
-         </div>
+          <CartIcon/>
+         </NavLinks>
          { isCartOpen && <CartDropdown/>}
-      </div>
+      </NavigationContainer>
       <Outlet/>
     </Fragment>
   )

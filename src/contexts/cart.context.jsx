@@ -32,7 +32,6 @@ const clearCartItem = (cartItems, cartItemToRemove) => {
     return cartItems.filter(cartItem => cartItem.id !== cartItemToRemove.id)
 }
 
-
 export const CartContext = createContext({
     isCartOpen: false,
     setIsCartOpen: () => null,
@@ -49,7 +48,6 @@ export const CartProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
     const [cartCount, setCartCount] = useState(0);
     const [cartTotal, setCartTotal] = useState(0);
-
 
     // For the reason of one single responsiblity we separate this:
     // useEffect(() => {
