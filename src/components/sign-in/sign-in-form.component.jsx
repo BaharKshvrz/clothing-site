@@ -5,7 +5,7 @@ import {  getCategoriesAndDocuments, signInAuthUserWithEmailAndPassword,
          signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
 import './sign-in-form.styles.scss';
 import { useDispatch } from 'react-redux';
-import { setCategories } from '../../store/categories/category.action';
+import { fetchCategoriesAsync, setCategories } from '../../store/categories/category.action';
 
 const defaultFormFields = {
   email: '',
@@ -13,20 +13,11 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
-
   const dispatch = useDispatch();
-    
   // Get data from firebase
   useEffect(() => {
-    const getCategoriesMap = async() => {
-        const categoriesArray = await getCategoriesAndDocuments();
-        dispatch(setCategories(categoriesArray));
-    };
-
-    getCategoriesMap();
+        dispatch(fetchCategoriesAsync());
    }, []);
-
-
 
   const [formFields, setFormFields] = useState(defaultFormFields);
   const {email, password} = formFields;
