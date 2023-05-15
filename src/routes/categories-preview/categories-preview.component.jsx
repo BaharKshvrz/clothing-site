@@ -5,7 +5,7 @@ import {selectCategoriesMap} from '../../store/categories/category.selector';
 
 const CategoriesPreview = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
-  
+
   return (
     <Fragment>
        { Object.keys(categoriesMap).map(title => {
