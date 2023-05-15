@@ -11,7 +11,8 @@ import thunk from "redux-thunk";
 const persistConfig = {
     key: 'root',   // at the top level(persist whole)
     storage,
-    blacklist:[],  // blacklist: ['user'] - we want to dismiss the user in this example
+    whitelist: ['cart'],
+    //blacklist:[],  // blacklist: ['user'] - we want to dismiss the user in this example
 }
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
