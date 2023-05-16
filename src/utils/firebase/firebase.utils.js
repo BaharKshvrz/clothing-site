@@ -20,6 +20,7 @@ import {
     query,
     getDocs,
 } from 'firebase/firestore';
+import { useReducer } from "react";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -94,12 +95,14 @@ export const createUserDocumentForAuth = async (userAuth, additionalInformation)
      }
    }
 
-   return userDocRef;
+   return userSnapshot;
 }
 
 // sig-up form
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
    if (!email || !password) return;
+   const ff = await createUserWithEmailAndPassword(auth, email, password);
+   console.log('ff:', ff.user);
    return await createUserWithEmailAndPassword(auth, email, password);
 }
 
@@ -112,3 +115,17 @@ export const signOutUser = async() => await signOut(auth);
 
 // observer pattern
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+// get the user
+export const getCurrentUser = () => {
+   return new Promise((resolve, reject) => {
+      const unsubscibe = onAuthStateChanged(
+         auth,
+         (userAuth) => {
+            unsubscibe();
+            resolve(userAuth);
+         },
+         reject
+      )
+   });
+}

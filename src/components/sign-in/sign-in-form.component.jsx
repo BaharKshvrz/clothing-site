@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-import {  signInAuthUserWithEmailAndPassword,
-         signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
-import './sign-in-form.styles.scss';
 import { useDispatch } from 'react-redux';
-import { fetchCategoriesStart } from '../../store/categories/category.action';
-
+import { googleSignInStart } from '../../store/user/user.action';
+import { onEmailSignInStart } from '../../store/user/user.saga';
+import './sign-in-form.styles.scss';
+ 
 const defaultFormFields = {
   email: '',
   password: '',
@@ -14,11 +13,6 @@ const defaultFormFields = {
 
 const SignInForm = () => {
   const dispatch = useDispatch();
-  // Get data from firebase
-  useEffect(() => {
-        dispatch(fetchCategoriesStart());
-   }, []);
-
   const [formFields, setFormFields] = useState(defaultFormFields);
   const {email, password} = formFields;
 
@@ -32,14 +26,14 @@ const SignInForm = () => {
   }
 
   const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
+    dispatch(googleSignInStart());
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      await signInAuthUserWithEmailAndPassword(email, password);
+      dispatch(onEmailSignInStart(email, password));
       resetFormFields();
 
     } catch (error) {
