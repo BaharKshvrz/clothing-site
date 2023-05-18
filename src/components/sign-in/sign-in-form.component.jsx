@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { signInAuthUserWithEmailAndPassword,
          signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
 import './sign-in-form.styles.scss';
-import { useDispatch } from 'react-redux';
-import { fetchCategoriesAsync } from '../../store/categories/category.action';
 
 const defaultFormFields = {
   email: '',
@@ -13,12 +11,6 @@ const defaultFormFields = {
 }
 
 const SignInForm = () => {
-  const dispatch = useDispatch();
-  // Get data from firebase
-  useEffect(() => {
-        dispatch(fetchCategoriesAsync());
-   }, []);
-
   const [formFields, setFormFields] = useState(defaultFormFields);
   const {email, password} = formFields;
 

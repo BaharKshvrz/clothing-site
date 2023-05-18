@@ -37,5 +37,7 @@ const middleWares = [process.env.NODE_ENV !== 'production' && logger].filter(Boo
 export const store = configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) => 
-       getDefaultMiddleware().concat(middleWares)
+       getDefaultMiddleware({
+         serializableCheck: false,
+       }).concat(middleWares)
 })
