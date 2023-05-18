@@ -7,9 +7,10 @@ import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component
 import { Logo, LogoContainer, NavLink, NavLinks, NavigationContainer } from './navigation.styles';
 import { useSelector } from 'react-redux';
 import { selectCartIsOpen } from '../../store/cart/cart.selector';
+import {selectCurrentUser} from '../../store/user/user.selector';
 
 const Navigation = () => {
-  const {currentUser} = useContext(UserContext);
+  const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectCartIsOpen);
   const signOutHandler = async () =>  await signOutUser();
 

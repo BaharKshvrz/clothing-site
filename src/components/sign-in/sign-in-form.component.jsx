@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import FormInput from '../form-input/form-input.component';
 import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
-import {  getCategoriesAndDocuments, signInAuthUserWithEmailAndPassword,
+import { signInAuthUserWithEmailAndPassword,
          signInWithGooglePopup } from '../../utils/firebase/firebase.utils';
 import './sign-in-form.styles.scss';
 import { useDispatch } from 'react-redux';
-import { fetchCategoriesAsync, setCategories } from '../../store/categories/category.action';
+import { fetchCategoriesAsync } from '../../store/categories/category.action';
 
 const defaultFormFields = {
   email: '',
