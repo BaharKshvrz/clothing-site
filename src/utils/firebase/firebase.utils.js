@@ -101,8 +101,7 @@ export const createUserDocumentForAuth = async (userAuth, additionalInformation)
 // sig-up form
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
    if (!email || !password) return;
-   const ff = await createUserWithEmailAndPassword(auth, email, password);
-   console.log('ff:', ff.user);
+
    return await createUserWithEmailAndPassword(auth, email, password);
 }
 
