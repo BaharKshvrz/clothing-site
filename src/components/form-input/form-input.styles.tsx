@@ -21,12 +21,15 @@ export const Group = styled.div`
     position: relative;
 `;
 
-export const FormInputLabel = styled.label`
+
+type FormInputLabelProps = {
+   shrink : boolean;
+}
+export const FormInputLabel = styled.label<FormInputLabelProps>`
     font-size: 1.1rem;
     position: absolute;
     left: 0;
     top: 0;
-
     ${({shrink}) => shrink && shrinkLableStyles};
 `;
 

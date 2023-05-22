@@ -1,4 +1,4 @@
-import React, { Fragment, useContext } from 'react'
+import { Fragment, useContext } from 'react'
 import { Outlet } from 'react-router-dom';
 import { UserContext } from '../../contexts/user.context';
 import CartIcon from '../../components/cart-icon/cart-icon.component';
@@ -12,7 +12,6 @@ const Navigation = () => {
   const dispatch = useDispatch();
   const {currentUser} = useContext(UserContext);
   const isCartOpen = useSelector(selectCartIsOpen);
-
   const signOutHandler = () => dispatch(signOutStart());
 
   return (
@@ -24,7 +23,7 @@ const Navigation = () => {
          <NavLinks>
            <NavLink to="/shop"> Shop </NavLink>
            {
-            currentUser ? (<NavLink as='span' onClick={signOutHandler}> Sing Out </NavLink>)
+            currentUser ? (<NavLink to="/auth" as='span' onClick={signOutHandler}> Sing Out </NavLink>)
                         : (<NavLink to="/auth"> Sign In </NavLink>)
            }
           <CartIcon/>

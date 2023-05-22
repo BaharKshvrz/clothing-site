@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
-export const SppinerOverlay = styled.div`
+export const SpinnerOverlay = styled.div`
     width: 100%;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 `;
-export const SppinerContainer = styled.div`
+export const SpinnerContainer = styled.div`
    width: 50px;
    height: 50px;
    border-radius: 50%;
@@ -20,4 +20,4 @@ export const SppinerContainer = styled.div`
         transform: rotate(360deg)
      }
    }
-`
+`;

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { ChangeEvent, FormEvent, useState } from 'react';
 import FormInput from '../form-input/form-input.component';
-import Button from '../button/button.component';
+import Button, { BUTTON_TYPE_CLASSES } from '../button/button.component';
 import { useDispatch } from 'react-redux';
 import { signUpStart } from '../../store/user/user.action';
 
@@ -16,12 +16,12 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const {displayName, email, password, confirmPassword} = formFields;
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const {name, value} = event.target;
     setFormFields({...formFields, [name] : value});
   }
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (password !== confirmPassword) return;
     
@@ -68,7 +68,7 @@ const SignUpForm = () => {
           value={confirmPassword}
           onChange={handleChange} />
 
-        <Button type='submit' buttonType='inverted'>Sign Up</Button>
+        <Button type='submit' buttonType={BUTTON_TYPE_CLASSES.inverted}> Sign Up </Button>
       </form>
     </div>
   )
